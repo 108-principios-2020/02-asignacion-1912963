@@ -40,15 +40,55 @@ esp$abs<- esp$freq/sum(esp$freq)*100
 esp
 barplot(esp$freq, names.arg = esp$y, main= "frecuencia absoluta",
         col = "red")
-mean(especies)
-sum(especies)
-boxplot(especies)
+
 
 # ¿Que especie presenta mayor proporción? ---------------------------------
 R= 
 
 
+
 # Act 3 -------------------------------------------------------------------
 
-conjunto <- source_data("https://www.dropbox.com/s/hmsf07bbayxv6m3/cuadro1.csv?d1=1")
+
+  library(repmis)
+conjunto <- source_data("https://www.dropbox.com/s/hmsf07bbayxv6m3/cuadro1.csv?dl=1") 
   
+
+vecyesp <- table(conjunto$Vecinos,conjunto$Especie)
+vecyesp  
+
+
+barplot(table(conjunto$Vecinos, conjunto$Especie), main = "cantidad de especies",
+        col = "blue")
+mean(conjunto$Vecinos)
+sum(conjunto$Altura)
+
+
+
+# Act 4 -------------------------------------------------------------------
+
+altura <- conjunto$Altura
+range(altura)
+
+intervalo <- seq(8, 21, by=3)
+intervalo
+
+altura.table <- cut(altura, intervalo)
+table(altura.table)
+
+
+
+# act 5 -------------------------------------------------------------------
+
+Diametro <- conjunto$Diametro
+range(Diametro)
+
+
+Intervalo <- seq(7.5, 25.5, by=2.5)
+Intervalo
+
+par(mfrow=c(1,2))
+hist(conjunto$Diametro, col = "black",   main = "Sin modificar", xlab = "Diametro")
+hist(conjunto$Diametro, breaks = Intervalo, col = "brown",   main = "Datos intervalos")
+par(mfrow=c(1,1))
+g
